@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  <!--
+        QUIZ GAME!
+
+        RULES:
+        / The player must guess correctly a certain amount of questions
+        / Each correct answer gives him one point
+        / Answers could be multiple or true/false
+        / At the end of the game, the user must know his/her total score
+
+        QUESTIONS:
+        / You can get them from this URL ( http://bit.ly/strive_QUIZZ ) or you can write your own
+        / Could be multiple of boolean (true / false)
+
+        HINTS:
+        / Keep a global variable score for the user score
+        / Keep a variable questionNumber for the question the user is answering
+        / When questionNumber is bigger then the available questions, present the score
+        / Start working with the questions saved in a variable (or you can use AJAX for fetching external questions if you already know how to do it!)
+        / Start with the easier version and THEN implement the EXTRAs
+        / Please debug everything / try it on the console to be sure of what to expect from your code
+
+        EXTRA:
+        / Show if the answer provided was the wrong one or correct it after clicking
+        / Present the questions one at a time instead of having all of them displayed together
+        / Let the user select difficulty and number of questions (you can get q/a from https://opentdb.com/api.php?amount=10&category=18&difficulty=easy modifying amount and difficulty)
+    
+        /* WHEN YOU ARE FINISHED
+          Commit and push the code to your personal GitHub repository; then post the link of your commit on the Homework section of today's Eduflow.
+        */
+    -->
+
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One&family=Anybody:wght@200&family=Libre+Baskerville:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      .displayed-not{
+        display:none ;
+      }
+      body{
+        font-family: 'Roboto', sans-serif;
+        
+        font-weight:700 ;
+      }
+      #submit-button{
+        margin-left: 10px;
+      }
+      
+
+  </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="index.js"></script>
+    <div id="start-a-quiz">
+      
+    <h1>This is a Quiz</h1>
+    <h2>Input the number of questions between 5 and 20</h2>
+    <input id="text-bar" type="text"   />
+    <input  type="button" value="START!" onclick="displayFirstQuestion()"/>
+  </div>
+  <div id="Questions">
+    <div class="displayed-not" id="first-question">
+      <p id="Question1" ></p>
+      <input type="radio" name="question1"  id="correct1">Central Processing Unit<br>
+      <input type="radio" name="question1" >Central Process Unit<br>
+      <input type="radio" name="question1" >Computer Personal Unit<br>
+      <input type="radio" name="question1" >Central Processor Unit<br>
+      
+    </div>
+    <div class="displayed-not" id="second-question">
+      <p id="Question2"></p>
+      <input type="radio" name="question2" id="correct2">Final<br>
+      <input type="radio" name="question2">Static<br>
+      <input type="radio" name="question2">Private<br>
+      <input type="radio" name="question2">Public<br>
+
+    </div>
+    <div class="displayed-not" id="third-question">
+      <p id="Question3"></p>
+      <input type="radio" name="question3"id="correct3">False<br>
+      <input type="radio" name="question3">True<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="fourth-question">
+      <p id="Question4"></p>
+      <input type="radio" name="question4" id="correct4">False<br>
+      <input type="radio" name="question4">True<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="fifth-question">
+      <p id="Question5"></p>
+      <input type="radio" name="question5" id="correct5">.svg<br>
+      <input type="radio" name="question5">.png<br>
+      <input type="radio" name="question5">.jpeg<br>
+      <input type="radio" name="question5">.gif<br>
+
+    </div>
+    <div class="displayed-not" id="sixth-question">
+      <p id="Question6"></p>
+      <input type="radio" name="question6" id="correct6">Cascading Style Sheet<br>
+      <input type="radio" name="question6">Counter Strike Style Sheet<br>
+      <input type="radio" name="question6">Corrective Style Sheet<br>
+      <input type="radio" name="question6">Computer Style Sheet<br>
+
+    </div>
+    <div class="displayed-not" id="seventh-question">
+      <p id="Question7"></p>
+      <input type="radio" name="question7" id="correct7">Nougat<br>
+      <input type="radio" name="question7">Ice Cream Sandwich<br>
+      <input type="radio" name="question7">Jelly Bean<br>
+      <input type="radio" name="question7">Marshmallow<br>
+      
+
+    </div>
+    <div class="displayed-not" id="eight-question">
+      <p id="Question8"></p>
+      <input type="radio" name="question8" id="correct8">140<br>
+      <input type="radio" name="question8">160 <br>
+      <input type="radio" name="question8">120<br>
+      <input type="radio" name="question8">100<br>
+
+    </div>
+    <div class="displayed-not" id="nineth-question">
+      <p id="Question9"></p>
+      <input type="radio" name="question9" id="correct9">False<br>
+      <input type="radio" name="question9">True<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="tenth-question">
+      <p id="Question10"></p>
+      <input type="radio" name="Question10" id="correct10">Java<br>
+      <input type="radio" name="question10">Python<br>
+      <input type="radio" name="question10">C#<br>
+      <input type="radio" name="question10">Jakarta<br>
+      
+
+    </div>
+    <div class="displayed-not" id="eleventh-question">
+      <p id="Question11"></p>
+      <input type="radio" name="Question11" id="correct11">Long Term Support<br>
+      <input type="radio" name="question11">Long Taco Service<br>
+      <input type="radio" name="question11">Ludicrous Transfer Speed<br>
+      <input type="radio" name="question11">Ludicrous Turbo Speed<br>
+
+    </div>
+    <div class="displayed-not" id="twelvth-question">
+      <p id="Question12"></p>
+      <input type="radio" name="Question12" id="correct12">True<br>
+      <input type="radio" name="question12">False<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="thirteenth-question">
+      <p id="Question13"></p>
+      <input type="radio" name="Question13" id="correct13">True<br>
+      <input type="radio" name="question13">False<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="fourteenth-question">
+      <p id="Question14"></p>
+      <input type="radio" name="Question14" id="correct14">False<br>
+      <input type="radio" name="question14">True<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="fifteenth-question">
+      <p id="Question15"></p>
+      <input type="radio" name="Question15" id="correct15">Hexadecimal<br>
+      <input type="radio" name="question15">Binary<br>
+      <input type="radio" name="question15">DuoDecimal<br>
+      <input type="radio" name="question15">Octal<br>
+      
+
+    </div>
+    <div class="displayed-not" id="sixteenth-question">
+      <p id="Question16"></p>
+      <input type="radio" name="Question16" id="correct16">False<br>
+      <input type="radio" name="question16">True<br>
+      
+      
+
+    </div>
+    <div class="displayed-not" id="seventeenth-question">
+      <p id="Question17"></p>
+      <input type="radio" name="Question17" id="correct17">iOS<br>
+      <input type="radio" name="question17">Android<br>
+      <input type="radio" name="question17">BlackBerry<br>
+      <input type="radio" name="question17">Symbian<br>
+      
+
+    </div>
+    <div class="displayed-not" id="eighteenth-question">
+      <p id="Question18"></p>
+      <input type="radio" name="Question18" id="correct18">Musical Instrument Digital Interface<br>
+      <input type="radio" name="question18" >Musical Interface of Digital Instruments<br>
+      <input type="radio" name="question18">Modular Interface of Digital Instruments<br>
+      <input type="radio" name="question18">Musical Instrument Data Interface<br>
+      
+
+    </div>
+    <div class="displayed-not" id="nineteenth-question">
+      <p id="Question19"></p>
+      <input type="radio" name="Question19" id="correct19">Local Area Network<br>
+      <input type="radio" name="question19">Long Antenna Node<br>
+      <input type="radio" name="question19">Light Access Node<br>
+      <input type="radio" name="question19">Land Address Navigation<br>
+      
+
+    </div>
+    <div class="displayed-not" id="twentieth-question">
+      <p id="Question20"></p>
+      <input type="radio" name="Question20" id="correct20">Java Virtual Machine<br>
+      <input type="radio" name="question20">Java Vendor Machine<br>
+      <input type="radio" name="question20">Java Visual Machine<br>
+      <input type="radio" name="question20">Just Virtual Machine<br>
+      
+
+    </div>
+   
+    
+  </div>
+  
+    <input id="continue-button" class="displayed-not"type="button" value="Continue" onclick="Continue(),Counter()"/>
+    <input class="displayed-not"id="submit-button"type="button" value="Submit" onclick="Submit()"/>
+    
+    <script>
+      
+      
+
+      window.onload = function () {
+        
+        counterVal=0
+        let questionsNode = document.querySelectorAll('#Questions p')
+        for(let i=0; i< questions.length  ;i++){
+          questionsNode[i].innerText = questions[i].question
+        }
+        // let answersNode = document.querySelectorAll('#Questions input ')
+        // for(let i=0; i< questions.length  ;i++){
+        //   //answersNode[i].innerText = questions[i].correct_answer
+        //   listNode = document.createElement('p')
+        //   answersNode[i].appendChild(listNode)
+        //   let paragNode = document.querySelectorAll('#Questions input p')
+        //   paragNode.innerText = questions[i].correct_answer
+
+        // }
+
+
+        // HINTS
+        // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
+        // For each question, create a container for wrapping it; then create a radio button
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
+        // with, as options, both the correct answer and the incorrect ones
+        // (you'll probably need to google how to get the value from a radio button in JS to evaluate the final score)
+        //
+        // IF YOU ARE DISPLAYING ONE QUESTION AT A TIME
+        // Display the first question with the text and the radio buttons
+        // when the user selects an answer, pick the next question from the array and replace the old one with it
+        // saving the user's choice in a variable
+      };
+
+      // How to calculate the result? You can do it in 2 ways:
+      // If you are presenting all the questions together, just take all the radio buttons and check if the selected answer === correct_answer
+      // If you are presenting one question at a time, just add one point or not to the user score if the selected answer === correct_answer
+      let displayFirstQuestion = function(){
+         let startingPageNode = document.getElementById('start-a-quiz')
+         startingPageNode.classList.add('displayed-not')
+         let firstQuestionNode = document.getElementById('first-question')
+         firstQuestionNode.classList.remove('displayed-not')
+         document.getElementById('continue-button').classList.remove('displayed-not')
+      }
+    
+      let Submit = function(){
+        let count=0
+        
+
+        if(document.getElementById('correct1').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct2').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct3').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct4').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct5').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct6').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct7').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct8').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct9').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct10').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct11').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct12').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct13').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct14').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct15').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct16').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct17').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct18').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct19').checked){
+          
+          count +=1
+      }
+      if(document.getElementById('correct20').checked){
+          
+          count +=1
+      }
+
+
+    
+      alert("Your score is:"+count)
+      document.write('That was it.\n Thank you for taking my quiz')
+      
+    }
+      let Continue = function () {
+
+      let questionsNode =document.querySelector('#Questions').children
+      let numberOfQuestions= parseInt(document.getElementById('text-bar').value)
+      let questionNumber =0
+      for(let i=0; i<numberOfQuestions-1;i++){
+        
+        
+        
+      
+         if(!questionsNode[i].classList.contains('displayed-not')){
+           questionsNode[i].classList.add('displayed-not')
+           questionsNode[i+1].classList.remove('displayed-not')
+           return 1
+      
+    }
+  }
+  }
+  let Counter = function(){
+    ++counterVal
+    if(counterVal===(parseInt(document.getElementById('text-bar').value))){
+      document.getElementById('submit-button').classList.remove('displayed-not')
+
+    }
+
+  }
+  // let lastQuestion = function(){
+  //   let numberOfQuestions= parseInt(document.getElementById('text-bar').value)
+  //     for(let i=0; i<numberOfQuestions-1;i++){
+  //       if(i===(numberOfQuestions-1)){
+  //          document.getElementById('submit-button').classList.remove('displayed-not')
+  //          return 1
+  //       }
+
+  //     }
+  
+  
+    </script>
+
+  </body>
+</html>
